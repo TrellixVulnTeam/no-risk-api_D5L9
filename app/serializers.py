@@ -2,10 +2,11 @@ from django.contrib.auth.models import User, Group
 from app.models import *
 from rest_framework import serializers
 
-class UserSerializer(serializers.ModelSerializer):
+class UserCustomSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ('url', 'username', 'email', 'groups')
+        model = UserCustom
+        fields = ('url', 'username', 'password')
+
 
 class RiskSerializer(serializers.ModelSerializer):
     class Meta:

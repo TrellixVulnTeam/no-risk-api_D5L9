@@ -1,6 +1,10 @@
 from django.db import models
 from django.utils import timezone
 
+class UserCustom(models.Model):
+    username = models.TextField(unique=True)
+    password = models.TextField()
+
 
 class Risk(models.Model):
     name = models.TextField()
@@ -18,8 +22,8 @@ class Project(models.Model):
     description = models.TextField()
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
-    id_owner = models.ForeignKey('auth.User', related_name='owner')
-    members = models.ManyToManyField('auth.User', related_name='members')
+    id_owner = models.ForeignKey('UserCustom', related_name='owner')
+    members = models.ManyToManyField('UserCustom', related_name='members')
     risks = models.ManyToManyField('Risk', through='RiskProject')
     def __str__(self):
         return self.title
