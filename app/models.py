@@ -18,10 +18,10 @@ class Risk(models.Model):
 
 class Project(models.Model):
     title = models.TextField()
-    id_categroy = models.ForeignKey('Category')
+    id_category = models.ForeignKey('Category', default='2')
     description = models.TextField()
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
+    start_date = models.DateField()
+    end_date = models.DateField()
     id_owner = models.ForeignKey('UserCustom', related_name='owner')
     members = models.ManyToManyField('UserCustom', related_name='members')
     risks = models.ManyToManyField('Risk', through='RiskProject')
@@ -37,7 +37,7 @@ class Category(models.Model):
 
 
 class RiskProject(models.Model):
-    id_project = models.ForeignKey('Project')
+    id_project = models.ForeignKey('Project', related_name='risk_projects')
     id_risk = models.ForeignKey('Risk')
     probability = models.TextField()
     impact = models.TextField()
