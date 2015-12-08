@@ -20,6 +20,7 @@ class Project(models.Model):
     title = models.TextField()
     id_category = models.ForeignKey('Category', default='2')
     description = models.TextField()
+    risk_line = models.IntegerField()
     start_date = models.DateField()
     end_date = models.DateField()
     id_owner = models.ForeignKey('UserCustom', related_name='owner')

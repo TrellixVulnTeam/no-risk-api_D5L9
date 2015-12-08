@@ -12,10 +12,10 @@ class RiskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Risk
         fields = ('url', 'name', 'category', 'description', 'type')
-        
+
 class RiskProjectSerializer(serializers.ModelSerializer):
     id_risk = RiskSerializer(many=False, read_only=True)
-    
+
     class Meta:
         model = RiskProject
         fields = ('url', 'id_project', 'probability', 'id_risk',
@@ -27,10 +27,9 @@ class ProjectSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Project
-        fields = ('url', 'title', 'id_category', 'description', 'start_date', 'end_date', 'members', 'id_owner', 'risk_projects')
+        fields = ('url', 'title', 'id_category', 'risk_line', 'description', 'start_date', 'end_date', 'members', 'id_owner', 'risk_projects')
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ('url', 'id', 'name')
-
